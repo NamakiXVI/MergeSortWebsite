@@ -28,9 +28,8 @@ document.addEventListener('DOMContentLoaded', function()
         array = [];
         visualization.innerHTML = '';
         explanation.innerHTML = 'Starten sie erstmal.';
-        
-        // Generate 15 random numbers between 5 and maxValue
-        for (let i = 0; i < 15; i++) {
+
+        for (let i = 0; i < 50; i++) {
             array.push(Math.floor(Math.random() * (maxValue - 5 + 1)) + 5);
         }
         
@@ -78,20 +77,16 @@ document.addEventListener('DOMContentLoaded', function()
         
         const mid = Math.floor((left + right) / 2);
         
-        // Show dividing step
         explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
         renderBars(arr, left, right);
         await sleep(delay);
-        
-        // Recursively sort left and right halves
+
         await mergeSort(arr, left, mid);
         await mergeSort(arr, mid + 1, right);
         
-        // Merge the sorted halves
         explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen`;
         await merge(arr, left, mid, right);
         
-        // Show merged result
         renderBars(arr, left, right, true);
         await sleep(delay);
     }
@@ -120,6 +115,54 @@ document.addEventListener('DOMContentLoaded', function()
         {
             arr[left + k] = temp[k];
             renderBars(arr, left, left + k);
+            await sleep(delay/2);
+        }
+    }
+
+    async function mergeSortReverse(arr, left, right) 
+    {
+        if (left >= right) return;
+        
+        const mid = Math.floor((left + right) / 2);
+        
+        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
+        renderBars(arr, left, right);
+        await sleep(delay);
+        
+        await mergeSortReverse(arr, left, mid);
+        await mergeSortReverse(arr, mid + 1, right);
+        
+        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen`;
+        await mergeReverse(arr, left, mid, right);
+        
+        renderBars(arr, left, right, true);
+        await sleep(delay);
+    }
+    
+    async function mergeReverse(arr, left, mid, right) 
+    {
+        let i = right;
+        let j = mid + 1;
+        let temp = [];
+        
+        while (i <= mid && j >= left) 
+            {
+            if (arr[i] <= arr[j]) 
+            {
+                temp.push(arr[i--]);
+            } else 
+            {
+                temp.push(arr[j--]);
+            }
+        }
+        
+        while (i <= mid) temp.push(arr[i--]);
+        while (j <= right) temp.push(arr[j--]);
+        
+        for (let k = 0; k < temp.length; k++) 
+        {
+            arr[left + k] = temp[k];
+            renderBars(arr, right, right - k);
             await sleep(delay/2);
         }
     }
