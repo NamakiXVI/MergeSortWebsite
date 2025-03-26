@@ -5,11 +5,23 @@ document.addEventListener('DOMContentLoaded', function()
     const sortBtn = document.getElementById('sort-btn');
     const speedControl = document.getElementById('speed');
     const explanation = document.getElementById('explanation');
+    const onCheck = document.getElementById("checkbox");
     
     let array = [];
     let delay = 500;
+    let arrayAmount = 25;
     const maxValue = 100;
     
+    onCheck.addEventListener('change', function() 
+    {
+        // Wert der Checkbox basierend auf dem Zustand (checked) ändern
+        if (this.checked) {
+          this.value = "1"; // Wert, wenn Checkbox aktiviert ist
+        } else {
+          this.value = "0"; // Wert, wenn Checkbox deaktiviert ist
+        }
+    });
+
     // Initial array generation
     generateArray();
     
@@ -29,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function()
         visualization.innerHTML = '';
         explanation.innerHTML = 'Starten sie erstmal.';
 
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < arrayAmount; i++) {
             array.push(Math.floor(Math.random() * (maxValue - 5 + 1)) + 5);
         }
         
@@ -62,13 +74,24 @@ document.addEventListener('DOMContentLoaded', function()
     async function startMergeSort() 
     {
         sortBtn.disabled = true;
-        generateBtn.disabled = true;
+        //generateBtn.disabled = true;
         
-        await mergeSort(array, 0, array.length - 1);
+        switch (onCheck.value) 
+        {
+            case "0": 
+                await mergeSort(array, 0, array.length - 1);
+                break;
+            case "1":
+                console.log("case 1");
+                await mergeSortReversed(array, 0, array.length - 1);
+                break;
+            default:
+                console.log("default");
+        }
         
         explanation.innerHTML = 'Sortierung abgeschlossen.';
         sortBtn.disabled = false;
-        generateBtn.disabled = false;
+        //generateBtn.disabled = false;
     }
     
     async function mergeSort(arr, left, right) 
@@ -119,53 +142,50 @@ document.addEventListener('DOMContentLoaded', function()
         }
     }
 
-    async function mergeSortReverse(arr, left, right) 
-    {
-        if (left >= right) return;
-        
-        const mid = Math.floor((left + right) / 2);
-        
-        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
-        renderBars(arr, left, right);
-        await sleep(delay);
-        
-        await mergeSortReverse(arr, left, mid);
-        await mergeSortReverse(arr, mid + 1, right);
-        
-        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen`;
-        await mergeReverse(arr, left, mid, right);
-        
-        renderBars(arr, left, right, true);
-        await sleep(delay);
+// Absteigender MergeSort (Größte zu Kleinste)
+async function mergeSortReversed(arr, left, right) {
+    if (left >= right) return;
+    
+    const mid = Math.floor((left + right) / 2);
+    
+    explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
+    renderBars(arr, left, right);
+    await sleep(delay);
+    
+    await mergeSortReversed(arr, left, mid);
+    await mergeSortReversed(arr, mid + 1, right);
+    
+    explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen (absteigend)`;
+    await mergeReversed(arr, left, mid, right);
+    
+    renderBars(arr, left, right, true);
+    await sleep(delay);
+}
+
+async function mergeReversed(arr, left, mid, right) {
+    let i = left;
+    let j = mid + 1;
+    let temp = [];
+    
+    while (i <= mid && j <= right) 
+        {
+        if (arr[i] > arr[j]) {
+            temp.push(arr[i++]);
+        } else {
+            temp.push(arr[j++]);
+        }
     }
     
-    async function mergeReverse(arr, left, mid, right) 
-    {
-        let i = right;
-        let j = mid + 1;
-        let temp = [];
-        
-        while (i <= mid && j >= left) 
-            {
-            if (arr[i] <= arr[j]) 
-            {
-                temp.push(arr[i--]);
-            } else 
-            {
-                temp.push(arr[j--]);
-            }
-        }
-        
-        while (i <= mid) temp.push(arr[i--]);
-        while (j <= right) temp.push(arr[j--]);
-        
-        for (let k = 0; k < temp.length; k++) 
+    while (i <= mid) temp.push(arr[i++]);
+    while (j <= right) temp.push(arr[j++]);
+    
+    for (let k = 0; k < temp.length; k++) 
         {
-            arr[left + k] = temp[k];
-            renderBars(arr, right, right - k);
-            await sleep(delay/2);
-        }
+        arr[left + k] = temp[k];
+        renderBars(arr, left, left + k);
+        await sleep(delay/2);
     }
+}
     
     function sleep(ms) 
     {

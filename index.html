@@ -13,22 +13,49 @@
     </header>
 
     <div class="container">
-
         <div class="controls">
-            <button id="generate-btn">Neues Array</button>
-            <button id="sort-btn">Sortieren starten</button>
+
+            <div class="wrapper">
+                <input type="checkbox" id="toogle" class="hidden-trigger">
+                <label for="toogle" class="circle"> Neues Array </label>
+                
+                <div class="subs">
+                  <button id="generate-btn" class="sub-circle">
+                    <input value="1" name="sub-circle" type="radio" id="sub1" class="hidden-sub-trigger">
+                    <label for="sub1">zufällig Generiert</label>
+                  </button>
+                  <button class="sub-circle">
+                    <input value="1" name="sub-circle" type="radio" id="sub2" class="hidden-sub-trigger">
+                    <label for="sub2"></label>
+                  </button>
+                  <button class="sub-circle">
+                    <input value="1" name="sub-circle" type="radio" id="sub3" class="hidden-sub-trigger">
+                    <label for="sub3"></label>
+                  </button>
+                  <button class="sub-circle">
+                    <input value="1" name="sub-circle" type="radio" id="sub4" class="hidden-sub-trigger">
+                    <label for="sub4"></label>
+                  </button>
+                  <button class="sub-circle">
+                    <input value="1" name="sub-circle" type="radio" id="sub5" class="hidden-sub-trigger">
+                    <label for="sub5"></label>
+                  </button>
+                 </div>
+              </div>
+
+            <button class="buttons" id="sort-btn">Sortieren starten</button>
 
             <div>
-                <label for="speed">Von größte zu kleinste Sortieren:</label>
+                <label for="checkbox">Reverse:</label>
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" id="checkbox" value="0" onClick="get(this)">
                     <span class="slider"></span>
                   </label>                
             </div>
 
             <div>
                 <label for="speed">Geschwindigkeit:</label>
-                <input type="range" id="speed" min="1" max="20" value="20">
+                <input type="range" id="speed" min="1" max="20" value="10">
             </div>
         </div>
         
