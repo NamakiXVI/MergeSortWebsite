@@ -24,13 +24,13 @@
                     <input value="1" name="sub-circle" type="radio" id="sub1" class="hidden-sub-trigger">
                     <label for="sub1">zufällig Generiert</label>
                   </button>
-                  <button class="sub-circle">
+                  <button id="sorted-array" class="sub-circle">
                     <input value="1" name="sub-circle" type="radio" id="sub2" class="hidden-sub-trigger">
-                    <label for="sub2"></label>
+                    <label for="sub2"> sortiert < </label>
                   </button>
-                  <button class="sub-circle">
+                  <button id="sorted-array-reversed" class="sub-circle">
                     <input value="1" name="sub-circle" type="radio" id="sub3" class="hidden-sub-trigger">
-                    <label for="sub3"></label>
+                    <label for="sub3">sortiert > </label>
                   </button>
                   <button class="sub-circle">
                     <input value="1" name="sub-circle" type="radio" id="sub4" class="hidden-sub-trigger">
@@ -55,7 +55,12 @@
 
             <div>
                 <label for="speed">Geschwindigkeit:</label>
-                <input type="range" id="speed" min="1" max="20" value="10">
+                <input type="range" id="speed" min="1" max="20" value="30">
+            </div>
+
+            <div>
+                <label for="speed">Listengröße:</label>
+                <input type="range" id="value" min="10" max="50" value="10">
             </div>
         </div>
         

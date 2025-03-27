@@ -2,8 +2,11 @@ document.addEventListener('DOMContentLoaded', function()
 {
     const visualization = document.getElementById('visualization');
     const generateBtn = document.getElementById('generate-btn');
+    const sortedBtn = document.getElementById('sorted-array');
+    const sortedBtnReversed = document.getElementById('sorted-array-reversed');
     const sortBtn = document.getElementById('sort-btn');
     const speedControl = document.getElementById('speed');
+    const numArray = document.getElementById('value');
     const explanation = document.getElementById('explanation');
     const onCheck = document.getElementById("checkbox");
     
@@ -27,8 +30,12 @@ document.addEventListener('DOMContentLoaded', function()
     
     // Event listeners
     generateBtn.addEventListener('click', generateArray);
+    sortedBtn.addEventListener('click', generateSortedArray)
+    sortedBtnReversed.addEventListener('click', generateSortedArrayReversed)
     sortBtn.addEventListener('click', startMergeSort);
     speedControl.addEventListener('input', updateSpeed);
+    numArray.addEventListener('input', generateArray);
+
     
     function updateSpeed() 
     {
@@ -41,10 +48,40 @@ document.addEventListener('DOMContentLoaded', function()
         visualization.innerHTML = '';
         explanation.innerHTML = 'Starten sie erstmal.';
 
-        for (let i = 0; i < arrayAmount; i++) {
+        for (let i = 0; i < numArray.value; i++)
+        {
             array.push(Math.floor(Math.random() * (maxValue - 5 + 1)) + 5);
         }
         
+        
+        renderBars(array);
+    }
+
+    function generateSortedArray()
+    {
+        array = [];
+        visualization.innerHTML = '';
+        explanation.innerHTML = 'Starten sie erstmal.';
+
+        for (let i = 0; i < numArray.value; i++) 
+        {
+            array[i] = i;
+        }
+
+        renderBars(array);
+    }
+    
+    function generateSortedArrayReversed()
+    {
+        array = [];
+        visualization.innerHTML = '';
+        explanation.innerHTML = 'Starten sie erstmal.';
+
+        for (let i = 0; i < numArray.value; i++) 
+        {
+            array[i] = numArray.value - i - 1;
+        }
+
         renderBars(array);
     }
     
@@ -74,7 +111,8 @@ document.addEventListener('DOMContentLoaded', function()
     async function startMergeSort() 
     {
         sortBtn.disabled = true;
-        //generateBtn.disabled = true;
+        onCheck.disabled = false;
+        generateBtn.disabled = true;
         
         switch (onCheck.value) 
         {
@@ -91,7 +129,8 @@ document.addEventListener('DOMContentLoaded', function()
         
         explanation.innerHTML = 'Sortierung abgeschlossen.';
         sortBtn.disabled = false;
-        //generateBtn.disabled = false;
+        generateBtn.disabled = false;
+        onCheck.disabled = false;
     }
     
     async function mergeSort(arr, left, right) 
@@ -102,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function()
         
         explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
         renderBars(arr, left, right);
-        await sleep(delay);
+//        await sleep(delay);
 
         await mergeSort(arr, left, mid);
         await mergeSort(arr, mid + 1, right);
@@ -111,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function()
         await merge(arr, left, mid, right);
         
         renderBars(arr, left, right, true);
-        await sleep(delay);
+//        await sleep(delay);
     }
     
     async function merge(arr, left, mid, right) 
@@ -138,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function()
         {
             arr[left + k] = temp[k];
             renderBars(arr, left, left + k);
-            await sleep(delay/2);
+//            await sleep(delay/2);
         }
     }
 
@@ -190,5 +229,5 @@ async function mergeReversed(arr, left, mid, right) {
     function sleep(ms) 
     {
         return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    } 
 });
