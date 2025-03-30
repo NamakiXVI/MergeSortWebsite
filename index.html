@@ -32,13 +32,9 @@
                     <input value="1" name="sub-circle" type="radio" id="sub3" class="hidden-sub-trigger">
                     <label for="sub3">sortiert > </label>
                   </button>
-                  <button class="sub-circle">
+                  <button id="duplicated-array" class="sub-circle">
                     <input value="1" name="sub-circle" type="radio" id="sub4" class="hidden-sub-trigger">
-                    <label for="sub4"></label>
-                  </button>
-                  <button class="sub-circle">
-                    <input value="1" name="sub-circle" type="radio" id="sub5" class="hidden-sub-trigger">
-                    <label for="sub5"></label>
+                    <label for="sub4">duplikaten</label>
                   </button>
                  </div>
               </div>
@@ -48,19 +44,33 @@
             <div>
                 <label for="checkbox">Reverse:</label>
                 <label class="switch">
-                    <input type="checkbox" id="checkbox" value="0" onClick="get(this)">
+                    <input type="checkbox" id="reverseCheckbox" value="0">
                     <span class="slider"></span>
                   </label>                
             </div>
 
             <div>
-                <label for="speed">Geschwindigkeit:</label>
-                <input type="range" id="speed" min="1" max="20" value="30">
+                <label for="checkbox">Ohne Delay:</label>
+                <label class="switch">
+                    <input type="checkbox" id="noDelayCheckbox" value="0">
+                    <span class="slider"></span>
+                  </label>                
             </div>
 
             <div>
-                <label for="speed">Listengröße:</label>
-                <input type="range" id="value" min="10" max="50" value="10">
+              <div class="PB-range-slider-div">
+                  <label for="speed">Geschwindigkeit: </label>
+                  <input type="range" min="0" max="30" value="15" class="PB-range-slider" id="speed">
+                  <p class="PB-range-slidervalue" id="speedValue">15</p>
+                </div>
+            </div>
+
+            <div>
+              <div class="PB-range-slider-div">
+                <label for="Value">Listengröße: </label>
+                <input type="range" min="10" max="50" value="30" class="PB-range-slider" id="listSpeed">
+                <p class="PB-range-slidervalue" id="listValue">30</p>
+              </div>
             </div>
         </div>
         
@@ -69,6 +79,15 @@
         <div class="explanation" id="explanation">
             Starten sie erstmal.
         </div>
+        <div class="timer" id="divTimer">
+          <p>Time:</p>
+          <h1 id="timerText" class="timerText">00:000</h1>
+        </div>
     </div>
+    <div id="callstack-container">
+      <h3>Callstack Tracker</h3>
+      <div id="callstack-entries"></div>
+      <button id="clear-button">Clear</button>
+  </div>
 </body>
 </html>
