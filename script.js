@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function()
     sortedBtn.addEventListener('click', generateSortedArray); //sortiert generiert (von klein zu groß)
     sortedBtnReversed.addEventListener('click', generateSortedArrayReversed); //sortiert generiert (von groß zu klein)
     sortBtn.addEventListener('click', startMergeSort);
-//    duplicateBtn.addEventListener('click', generateDuplicateArray);
+    duplicateBtn.addEventListener('click', generateDuplicateArray);
 
     numArray.addEventListener('input', generateArray);
     speedControl.addEventListener('input', updateSpeed);
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function()
             array.push(Math.floor(Math.random() * maxValue));
         }
     
-        // Sortieren nach Richtung
+        updateValueValue();
         renderBars(array.sort((a, b) => a - b));
     }
 
@@ -119,8 +119,26 @@ document.addEventListener('DOMContentLoaded', function()
         for (let i = 0; i < numArray.value; i++) {
             array.push(Math.floor(Math.random() * maxValue));
         }
-    
+
+        updateValueValue();
         renderBars(array.sort((a, b) => b - a));
+    }
+
+    function generateDuplicateArray() 
+    {
+        array = [];
+        visualization.innerHTML = '';
+        explanation.innerHTML = 'Starten sie erstmal.';
+          
+        for (let i = 0; i < numArray.value / 2; i++)
+        {
+            randomNum = Math.floor(Math.random() * maxValue);
+            array.push(randomNum);
+            array.push(randomNum);
+        }
+        
+        updateValueValue();
+        renderBars(array);
     }
   
     function renderBars(arr, left = null, right = null, merged = false) 
