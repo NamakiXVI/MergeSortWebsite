@@ -402,3 +402,38 @@ footer .demo a {
   color: #95b6ff;
   font-family: Consolas,monaco,monospace;
 }
+
+
+.button-group:hover{
+  box-shadow: 0px 0px 100px -15px #000000;
+  background-color: #203549;
+}
+
+.button-group label{
+  justify-content: center;
+  display: flex;
+}
+
+.button-group{
+  display: flex;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #2b426d;
+  background-color: #385c7e;
+  color: white;
+  border-radius: 15px;
+  transition: all ease 0.2s;
+  width: 150px;
+  justify-content: center;
+  margin: 5px 15px;
+  box-shadow: 0px 0px 50px -15px #000000;
+  overflow-wrap: break-word;
+}
+
+.TimerContainer{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}

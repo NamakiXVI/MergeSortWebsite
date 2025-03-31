@@ -2,3 +2,4 @@
 - einen Modus , um zu wissen auf welche Arrayart er ist, einbauen, damit man bei der Listengrößenumstellung nicht immer ein zufälliges Array kriegt
 - eine Website/oder neuen Abschnitt in der Website für die Übersicht und Erklärung des Codes auch in Java
 - maybe flussdiagramm als übersicht auch noch dazu
+- best, current und worst time einbauen

@@ -28,6 +28,13 @@ document.addEventListener('DOMContentLoaded', function()
     let elapsedTime = 0;
     let timerInterval;
     const timer = document.getElementById('timerText');
+
+    let bestTime = Infinity;  // Start with highest possible value
+    let worstTime = 0;       // Start with lowest possible value
+    let currentTime = 0;
+    const bestTimeDiv = document.getElementById("bestTimeText");
+    const worstTimeDiv = document.getElementById("worstTimeText");
+    const currentTimeDiv = document.getElementById("currentTimeText");
     
     onCheck.addEventListener('change', function() 
     {
@@ -188,11 +195,7 @@ document.addEventListener('DOMContentLoaded', function()
         CallLog.innerHTML = ``;
         lineText = 0;
 
-        sortBtn.disabled = true;
-        onCheck.disabled = false;
-        generateBtn.disabled = true;
-        numArray.disabled = true;
-        arrayBtn.disabled = true;
+        [sortBtn, generateBtn, onCheck, numArray, arrayBtn].forEach(el => el.disabled = true);
         
         resetStopwatch();
         startStopwatch();
@@ -211,11 +214,8 @@ document.addEventListener('DOMContentLoaded', function()
         
         stopStopwatch();
         explanation.innerHTML = 'Sortierung abgeschlossen.';
-        sortBtn.disabled = false;
-        generateBtn.disabled = false;
-        onCheck.disabled = false;
-        numArray.disabled = false;
-        arrayBtn.disabled = false;
+
+        [sortBtn, generateBtn, onCheck, numArray, arrayBtn].forEach(el => el.disabled = false);
     }
     
     async function mergeSort(arr, left, right) 
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function()
 // Absteigender MergeSort (Größte zu Kleinste)
     async function mergeSortReversed(arr, left, right) 
     {
-        addCallStackLog(`mergeSortReversed(${arr} , ${left}, ${mid}, ${right})`);
+        addCallStackLog(`mergeSortReversed(${arr} , ${left}, ${right})`);
         if (left >= right) return;
         
         const mid = Math.floor((left + right) / 2);
@@ -340,15 +340,28 @@ document.addEventListener('DOMContentLoaded', function()
             startTime = Date.now() - elapsedTime;
             timerInterval = setInterval(() => {
                 elapsedTime = Date.now() - startTime;
+                currentTime = elapsedTime;
                 timer.innerHTML = formatTime(elapsedTime);
             }, 10);
         }
+
     }
 
     function stopStopwatch() 
     {
         clearInterval(timerInterval);
         timerInterval = null;
+        if (currentTime < bestTime) {
+            bestTime = currentTime;
+            bestTimeDiv.textContent = formatTime(bestTime);
+        }
+        if (currentTime > worstTime) {
+            worstTime = currentTime;
+            worstTimeDiv.textContent = formatTime(worstTime);
+        }
+        
+        // Display current time
+        currentTimeDiv.textContent = formatTime(currentTime);
     }
 
     function resetStopwatch() 
