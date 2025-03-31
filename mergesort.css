@@ -43,10 +43,18 @@ margin-bottom: 1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
 }
 
 .buttons:disabled {
   background-color: #cccccc;
+}
+
+.buttons:hover{
+  color: rgb(255, 255, 255);
+  box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.3);
 }
 
 .visualization {
@@ -366,4 +374,31 @@ footer .demo a {
 .timerText{
   padding: 0 15px; 
   margin: 0 15px;
+}
+
+.CallstackHeader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 1000;
+}
+
+.CallStackLog{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #C6CACE;
+  border-radius: 6px;
+  padding: 0.5rem 3rem;
+  background-color: #181818;
+  box-shadow: 2px 2px 0px 4px rgba(0, 0, 0, 0.1);
+  overflow-wrap: break-word;
+}
+
+.textLog{
+  color: #95b6ff;
+  font-family: Consolas,monaco,monospace;
 }

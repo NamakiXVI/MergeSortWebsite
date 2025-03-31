@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function()
     let array = [];
     let delay = 500;
     const maxValue = 100;
+    let lineText = 0;
 
     let startTime;
     let elapsedTime = 0;
@@ -103,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function()
 
     function generateSortedArray() 
     {
-        // Zufälliges Array erstellen
         array = [];
         for (let i = 0; i < numArray.value; i++) {
             array.push(Math.floor(Math.random() * maxValue));
@@ -183,6 +183,11 @@ document.addEventListener('DOMContentLoaded', function()
 
     async function startMergeSort() 
     {
+        addCallStackLog("startMergeSort()");
+        let CallLog = document.getElementById('CallStackLog');
+        CallLog.innerHTML = ``;
+        lineText = 0;
+
         sortBtn.disabled = true;
         onCheck.disabled = false;
         generateBtn.disabled = true;
@@ -215,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function()
     
     async function mergeSort(arr, left, right) 
     {
+        addCallStackLog(`mergeSort(${arr} , ${left}, ${right})`);
         if (left >= right) return;
         
         const mid = Math.floor((left + right) / 2);
@@ -235,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function()
     
     async function merge(arr, left, mid, right) 
     {
+        addCallStackLog(`merge(${arr} , ${left}, ${mid}, ${right})`);
         let i = left;
         let j = mid + 1;
         let temp = [];
@@ -262,7 +269,9 @@ document.addEventListener('DOMContentLoaded', function()
     }
 
 // Absteigender MergeSort (Größte zu Kleinste)
-    async function mergeSortReversed(arr, left, right) {
+    async function mergeSortReversed(arr, left, right) 
+    {
+        addCallStackLog(`mergeSortReversed(${arr} , ${left}, ${mid}, ${right})`);
         if (left >= right) return;
         
         const mid = Math.floor((left + right) / 2);
@@ -283,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function()
 
     async function mergeReversed(arr, left, mid, right) 
     {
+        addCallStackLog(`mergeReversed(${arr} , ${left}, ${mid}, ${right})`);
         let i = left;
         let j = mid + 1;
         let temp = [];
@@ -347,5 +357,15 @@ document.addEventListener('DOMContentLoaded', function()
         timerInterval = null;
         elapsedTime = 0;
         timer.textContent = '00:000';
+    }
+
+    function addCallStackLog(stringText)
+    {
+        let CallStackLog = document.getElementById("CallStackLog");
+        let newLog = document.createElement('div');
+        newLog.className = 'textLog';
+        newLog.innerHTML = lineText + ". " + stringText;
+        lineText++;
+        CallStackLog.appendChild(newLog);
     }
 });
