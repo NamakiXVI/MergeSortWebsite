@@ -12,6 +12,7 @@ color: white;
 padding: 1rem 0;
 text-align: center;
 margin-bottom: 1rem;
+width:100%;
 }
 
 .timer{
@@ -54,6 +55,8 @@ margin-bottom: 1rem;
 
 .buttons:hover{
   color: rgb(255, 255, 255);
+  background-color: #4CAF50;
+  letter-spacing: 1px;
   box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -388,7 +391,7 @@ footer .demo a {
   display: block;
   justify-content: center;
   align-items: center;
-  margin: 0 5rem;
+  margin: 0 2rem;
   margin-bottom: 2rem;
   border: 1px solid #C6CACE;
   border-radius: 6px;

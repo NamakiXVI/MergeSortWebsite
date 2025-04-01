@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function()
     const bestTimeDiv = document.getElementById("bestTimeText");
     const worstTimeDiv = document.getElementById("worstTimeText");
     const currentTimeDiv = document.getElementById("currentTimeText");
+
+    let arrayMode = 0;
     
     onCheck.addEventListener('change', function() 
     {
@@ -74,7 +76,27 @@ document.addEventListener('DOMContentLoaded', function()
     sortBtn.addEventListener('click', startMergeSort);
     duplicateBtn.addEventListener('click', generateDuplicateArray);
 
-    numArray.addEventListener('input', generateArray);
+    numArray.addEventListener('input', function()
+    {
+        switch(arrayMode)
+        {
+            case 0:
+                generateArray();
+                break;
+            case 1:
+                generateSortedArray();
+                break;
+            case 2:
+                generateSortedArrayReversed();
+                break;
+            case 3:
+                generateDuplicateArray();
+                break;
+            default:
+                generateArray();
+                break;
+        }
+    });
     speedControl.addEventListener('input', updateSpeed);
 
     
@@ -96,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function()
     
     function generateArray() 
     {
+        arrayMode = 0;
         array = [];
         visualization.innerHTML = '';
         explanation.innerHTML = 'Starten sie erstmal.';
@@ -111,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function()
 
     function generateSortedArray() 
     {
+        arrayMode = 1;
         array = [];
         for (let i = 0; i < numArray.value; i++) {
             array.push(Math.floor(Math.random() * maxValue));
@@ -122,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function()
 
     function generateSortedArrayReversed() 
     {
+        arrayMode = 2;
         array = [];
         for (let i = 0; i < numArray.value; i++) {
             array.push(Math.floor(Math.random() * maxValue));
@@ -133,6 +158,7 @@ document.addEventListener('DOMContentLoaded', function()
 
     function generateDuplicateArray() 
     {
+        arrayMode = 3;
         array = [];
         visualization.innerHTML = '';
         explanation.innerHTML = 'Starten sie erstmal.';
@@ -220,19 +246,19 @@ document.addEventListener('DOMContentLoaded', function()
     
     async function mergeSort(arr, left, right) 
     {
-        addCallStackLog(`mergeSort(${arr} , ${left}, ${right})`);
+        addCallStackLog(`mergeSort(arr: ${arr} ,left: ${left} ,right: ${right})`);
         if (left >= right) return;
         
         const mid = Math.floor((left + right) / 2);
         
-        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
+        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid}), Array: ${arr}`;
         renderBars(arr, left, right);
         await sleep(delay);
 
         await mergeSort(arr, left, mid);
         await mergeSort(arr, mid + 1, right);
         
-        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen`;
+        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen, Array: ${arr}`;
         await merge(arr, left, mid, right);
         
         renderBars(arr, left, right, true);
@@ -241,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function()
     
     async function merge(arr, left, mid, right) 
     {
-        addCallStackLog(`merge(${arr} , ${left}, ${mid}, ${right})`);
+        addCallStackLog(`merge(arr: ${arr} , left: ${left}, mid: ${mid}, right: ${right})`);
         let i = left;
         let j = mid + 1;
         let temp = [];
@@ -276,14 +302,14 @@ document.addEventListener('DOMContentLoaded', function()
         
         const mid = Math.floor((left + right) / 2);
         
-        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
+        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid}), Array: ${arr}`;
         renderBars(arr, left, right);
         await sleep(delay);
         
         await mergeSortReversed(arr, left, mid);
         await mergeSortReversed(arr, mid + 1, right);
         
-        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen (absteigend)`;
+        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen (absteigend), Array: ${arr}`;
         await mergeReversed(arr, left, mid, right);
         
         renderBars(arr, left, right, true);
@@ -370,6 +396,11 @@ document.addEventListener('DOMContentLoaded', function()
         timerInterval = null;
         elapsedTime = 0;
         timer.textContent = '00:000';
+    }
+
+    function resetTimer()
+    {
+        
     }
 
     function addCallStackLog(stringText)
