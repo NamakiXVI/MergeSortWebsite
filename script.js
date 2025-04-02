@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function()
     let startTime;
     let elapsedTime = 0;
     let timerInterval;
-    const timer = document.getElementById('timerText');
 
     let bestTime = Infinity;  // Start with highest possible value
     let worstTime = 0;       // Start with lowest possible value
@@ -35,9 +34,96 @@ document.addEventListener('DOMContentLoaded', function()
     const bestTimeDiv = document.getElementById("bestTimeText");
     const worstTimeDiv = document.getElementById("worstTimeText");
     const currentTimeDiv = document.getElementById("currentTimeText");
+    const timeResetBtn = document.getElementById("resetTime-btn");
 
+    timeResetBtn.addEventListener("click", resetTimer)
     let arrayMode = 0;
-    
+
+    let testBestTime = Infinity;
+    let testCurrentTime = 0;
+    let testWorstTime = 0;
+    const testBestTimeDiv = document.getElementById("testBestTimeText");
+    const testWorstTimeDiv = document.getElementById("testWorstTimeText");
+    const testCurrentTimeDiv = document.getElementById("testCurrentTimeText");
+    const test10 = document.getElementById("test10");
+    const test100 = document.getElementById("test100");
+    const test1000 = document.getElementById("test1000");
+
+    test10.addEventListener('click', () => runTest(10));
+    test100.addEventListener('click', () => runTest(100));
+    test1000.addEventListener('click', () => runTest(1000));
+
+    async function runTest(arraySize) 
+    {
+        delay = 0;
+        [test10, test100, test1000].forEach(el => el.disabled = true);
+        // Array-Größe setzen
+        numArray.value = arraySize;
+        console.log(numArray.value);
+        updateValueValue();
+        
+        switch(arrayMode)
+        {
+            case 0:
+                generateArray();
+                break;
+            case 1:
+                generateSortedArray();
+                break;
+            case 2:
+                generateSortedArrayReversed();
+                break;
+            case 3:
+                generateDuplicateArray();
+                break;
+            default:
+                generateArray();
+                break;
+        }
+
+        console.log(array);
+        
+        resetTestTimes();
+        // Sortierung starten und Zeit messen
+        startMergeSort();
+
+        testCurrentTime = currentTime;
+        testWorstTime = worstTime;
+        testBestTime = bestTime;
+        updateTestTimeDisplays();
+        /*
+        // Ergebnisse speichern
+        if (testCurrentTime < testBestTime) 
+        {
+            testBestTime = testCurrentTime;
+            testBestTimeDiv.textContent = formatTime(testBestTime);
+        }
+        if (testCurrentTime > testWorstTime) 
+        {
+            testWorstTime = testCurrentTime;
+            testWorstTimeDiv.textContent = formatTime(testWorstTime);
+        }
+            
+        testCurrentTimeDiv.textContent = formatTime(testCurrentTime);
+        */
+        // Ergebnisse anzeigen
+        [test10, test100, test1000, sortBtn].forEach(el => el.disabled = false);
+    }
+
+    function updateTestTimeDisplays() 
+    {
+        testCurrentTimeDiv.textContent = formatTime(testCurrentTime);
+        testBestTimeDiv.textContent = formatTime(testBestTime);
+        testWorstTimeDiv.textContent = formatTime(testWorstTime);
+    }
+
+    function resetTestTimes()
+    {
+        testBestTime = Infinity;
+        testWorstTime = 0;
+        testCurrentTime = 0;
+    }
+
     onCheck.addEventListener('change', function() 
     {
         if (this.checked) 
@@ -216,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function()
 
     async function startMergeSort() 
     {
-        addCallStackLog("startMergeSort()");
+//        addCallStackLog("startMergeSort()");
         let CallLog = document.getElementById('CallStackLog');
         CallLog.innerHTML = ``;
         lineText = 0;
@@ -246,19 +332,19 @@ document.addEventListener('DOMContentLoaded', function()
     
     async function mergeSort(arr, left, right) 
     {
-        addCallStackLog(`mergeSort(arr: ${arr} ,left: ${left} ,right: ${right})`);
+//        addCallStackLog(`mergeSort(arr: ${arr} ,left: ${left} ,right: ${right})`);
         if (left >= right) return;
         
         const mid = Math.floor((left + right) / 2);
         
-        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid}), Array: ${arr}`;
+        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
         renderBars(arr, left, right);
         await sleep(delay);
 
         await mergeSort(arr, left, mid);
         await mergeSort(arr, mid + 1, right);
         
-        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen, Array: ${arr}`;
+        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen`;
         await merge(arr, left, mid, right);
         
         renderBars(arr, left, right, true);
@@ -267,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function()
     
     async function merge(arr, left, mid, right) 
     {
-        addCallStackLog(`merge(arr: ${arr} , left: ${left}, mid: ${mid}, right: ${right})`);
+//        addCallStackLog(`merge(arr: ${arr} , left: ${left}, mid: ${mid}, right: ${right})`);
         let i = left;
         let j = mid + 1;
         let temp = [];
@@ -297,19 +383,19 @@ document.addEventListener('DOMContentLoaded', function()
 // Absteigender MergeSort (Größte zu Kleinste)
     async function mergeSortReversed(arr, left, right) 
     {
-        addCallStackLog(`mergeSortReversed(${arr} , ${left}, ${right})`);
+//        addCallStackLog(`mergeSortReversed(${arr} , ${left}, ${right})`);
         if (left >= right) return;
         
         const mid = Math.floor((left + right) / 2);
         
-        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid}), Array: ${arr}`;
+        explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
         renderBars(arr, left, right);
         await sleep(delay);
         
         await mergeSortReversed(arr, left, mid);
         await mergeSortReversed(arr, mid + 1, right);
         
-        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen (absteigend), Array: ${arr}`;
+        explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen (absteigend)`;
         await mergeReversed(arr, left, mid, right);
         
         renderBars(arr, left, right, true);
@@ -318,7 +404,7 @@ document.addEventListener('DOMContentLoaded', function()
 
     async function mergeReversed(arr, left, mid, right) 
     {
-        addCallStackLog(`mergeReversed(${arr} , ${left}, ${mid}, ${right})`);
+//        addCallStackLog(`mergeReversed(${arr} , ${left}, ${mid}, ${right})`);
         let i = left;
         let j = mid + 1;
         let temp = [];
@@ -367,8 +453,8 @@ document.addEventListener('DOMContentLoaded', function()
             timerInterval = setInterval(() => {
                 elapsedTime = Date.now() - startTime;
                 currentTime = elapsedTime;
-                timer.innerHTML = formatTime(elapsedTime);
             }, 10);
+            testCurrentTime = currentTime;
         }
 
     }
@@ -377,11 +463,13 @@ document.addEventListener('DOMContentLoaded', function()
     {
         clearInterval(timerInterval);
         timerInterval = null;
-        if (currentTime < bestTime) {
+        if (currentTime < bestTime) 
+        {
             bestTime = currentTime;
             bestTimeDiv.textContent = formatTime(bestTime);
         }
-        if (currentTime > worstTime) {
+        if (currentTime > worstTime) 
+        {
             worstTime = currentTime;
             worstTimeDiv.textContent = formatTime(worstTime);
         }
@@ -395,12 +483,16 @@ document.addEventListener('DOMContentLoaded', function()
         clearInterval(timerInterval);
         timerInterval = null;
         elapsedTime = 0;
-        timer.textContent = '00:000';
     }
 
     function resetTimer()
     {
-        
+        bestTime = Infinity;
+        worstTime = 0;
+        currentTime = 0;
+        bestTimeDiv.textContent = "00:00:00:000";
+        worstTimeDiv.textContent = "00:00:00:000";
+        currentTimeDiv.textContent = "00:00:00:000";
     }
 
     function addCallStackLog(stringText)
