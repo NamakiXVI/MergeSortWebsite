@@ -81,6 +81,25 @@
         </div>
 
         <div class="TimerContainer">
+          <div class="testWrapper">
+            <input type="checkbox" id="testToogle" class="testHidden-trigger">
+            <label for="testToogle" class="testCircle">start TEst</label>
+            
+            <div class="testSubs">
+              <button id="test10" class="testSub-circle">
+                <input value="1" name="testSub-circle" type="radio" id="testSub1" class="testHidden-sub-trigger">
+                <label for="sub1">Test 10</label>
+              </button>
+              <button id="test100" class="testSub-circle">
+                <input value="1" name="sub-circle" type="radio" id="testSub2" class="testHidden-sub-trigger">
+                <label for="sub2">Test 100</label>
+              </button>
+              <button id="test1000" class="testSub-circle">
+                <input value="1" name="sub-circle" type="radio" id="testSub3" class="testHidden-sub-trigger">
+                <label for="sub3">Test 1000</label>
+              </button>
+             </div>
+          </div>
           <button class="buttons" id="resetTime-btn">Reset</button>
           <div class="button-group" id="worstTime">
             <label for="worstTime">worst Time:</label>
@@ -96,51 +115,79 @@
             <label for="bestTime">Best Time:</label>
             <h2 class="buttonTimeText" id="bestTimeText">00:00:00:000</h2>
           </div>
-
-          <div class="TestContainer">
-            <label class="RunTestsHeader">Run Tests</label>
-
-            <div class="testWrapper">
-              <input type="checkbox" id="testToogle" class="testHidden-trigger">
-              <label for="testToogle" class="testCircle">start TEst</label>
-              
-              <div class="testSubs">
-                <button id="test10" class="testSub-circle">
-                  <input value="1" name="testSub-circle" type="radio" id="testSub1" class="testHidden-sub-trigger">
-                  <label for="sub1">Test 10</label>
-                </button>
-                <button id="test100" class="testSub-circle">
-                  <input value="1" name="sub-circle" type="radio" id="testSub2" class="testHidden-sub-trigger">
-                  <label for="sub2">Test 100</label>
-                </button>
-                <button id="test1000" class="testSub-circle">
-                  <input value="1" name="sub-circle" type="radio" id="testSub3" class="testHidden-sub-trigger">
-                  <label for="sub3">Test 1000</label>
-                </button>
-               </div>
-            </div>
-
-            <div class="testButton-group" id="worstTime">
-              <label for="worstTime">worst Time:</label>
-              <h3 class="buttonTimeText" id="testWorstTimeText">00:00:00:000</h3>
-            </div>
-  
-            <div class="testButton-group" id="currentTime">
-              <label for="currentTime">current Time:</label>
-              <h3 class="buttonTimeText" id="testCurrentTimeText">00:00:00:000</h3>
-            </div>
-  
-            <div class="testButton-group" id="bestTime">
-              <label for="bestTime">Best Time:</label>
-              <h3 class="buttonTimeText" id="testBestTimeText">00:00:00:000</h3>
-            </div>
-          </div>
         </div>
-
         <div class="CallStack-Container">
           <label class="CallstackHeader"> CallStack Log:</label>
           <div class="CallStackLog" id="CallStackLog"></div>
         </div>
+        
+        <header>Was ist Mergesort?</header>
+
+        <div class="erklaerungsSection">
+          <h2>Grundprinzip</h2>
+          <p>Merge-Sort ist ein <strong>divide-and-conquer</strong> Algorithmus:</p>
+          <ol>
+              <li>Teile die Liste rekursiv in Hälften</li>
+              <li>Sortiere die einzelnen Teile</li>
+              <li>Füge die sortierten Teile zusammen ("merge")</li>
+          </ol>
+      </div>
+
+  <div class="code-editor">
+    <div class="code-header">
+      <span class="code-title">MergeSort.java</span>
     </div>
+    <div class="code-editor-content">
+      <code class="code-code">
+      <p><span class="color-0">public class</span> <span class="color-2">MergeSort</span> {</p>
+      
+        <p>&nbsp;&nbsp;<span class="color-0 comment">// Teilt das Array rekursiv in Hälften</span></p>
+        <p>&nbsp;&nbsp;<span class="color-0">public static</span> <span class="color-0">void</span> <span class="color-2">mergeSort</span>(<span class="color-0">int</span>[] array) {</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">if</span> (array.<span class="color-2">length</span> > 1) { <span class="color-0 comment">// Rekursionsabbruch: Einzelne Elemente sind sortiert</span></p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0 comment">// 1. DIVIDE: Array in zwei Hälften teilen</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">int</span> mid = array.<span class="color-2">length</span> / 2;</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">int</span>[] left = <span class="color-0">new</span> <span class="color-0">int</span>[mid];</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">int</span>[] right = <span class="color-0">new</span> <span class="color-0">int</span>[array.<span class="color-2">length</span> - mid];</p>
+  
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">System.arraycopy</span>(array, 0, left, 0, mid); <span class="color-0 comment">// Linke Hälfte kopieren</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">System.arraycopy</span>(array, mid, right, 0, array.<span class="color-2">length</span> - mid); <span class="color-0 comment">// Rechte Hälfte kopieren</span></p>
+  
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">mergeSort</span>(left); <span class="color-0 comment">// Linke Hälfte sortieren</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">mergeSort</span>(right); <span class="color-0 comment">// Rechte Hälfte sortieren</span></p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">merge</span>(array, left, right); <span class="color-0 comment">// Sortierte Hälften zusammenfügen</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p>&nbsp;&nbsp;}</p>
+  
+        <p>&nbsp;&nbsp;<span class="color-0 comment">// Fügt zwei sortierte Arrays zu einem sortierten Array zusammen</span></p>
+        <p>&nbsp;&nbsp;<span class="color-0">private static</span> <span class="color-0">void</span> <span class="color-2">merge</span>(<span class="color-0">int</span>[] result, <span class="color-0">int</span>[] left, <span class="color-0">int</span>[] right) {</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">int</span> i = 0, j = 0, k = 0; <span class="color-0 comment">// Index für left (i), right (j), result (k)</span></p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0 comment">// 2. CONQUER: Elemente vergleichen und sortiert einfügen</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">while</span> (i < left.<span class="color-2">length</span> && j < right.<span class="color-2">length</span>) {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">if</span> (left[i] <= right[j]) {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result[k++] = left[i++]; <span class="color-0 comment">// Linkes Element ist kleiner</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <span class="color-0">else</span> {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result[k++] = right[j++]; <span class="color-0 comment">// Rechtes Element ist kleiner</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+  
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0 comment">// 3. Restelemente aus left/right übernehmen</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">while</span> (i < left.<span class="color-2">length</span>) {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result[k++] = left[i++];</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+  
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">while</span> (j < right.<span class="color-2">length</span>) {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result[k++] = right[j++];</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p>&nbsp;&nbsp;}</p>
+        <p>}</p>
+      </code>
+    </div>
+  </div>
+  
 </body>
 </html>

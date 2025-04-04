@@ -39,12 +39,6 @@ document.addEventListener('DOMContentLoaded', function()
     timeResetBtn.addEventListener("click", resetTimer)
     let arrayMode = 0;
 
-    let testBestTime = Infinity;
-    let testCurrentTime = 0;
-    let testWorstTime = 0;
-    const testBestTimeDiv = document.getElementById("testBestTimeText");
-    const testWorstTimeDiv = document.getElementById("testWorstTimeText");
-    const testCurrentTimeDiv = document.getElementById("testCurrentTimeText");
     const test10 = document.getElementById("test10");
     const test100 = document.getElementById("test100");
     const test1000 = document.getElementById("test1000");
@@ -59,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function()
         [test10, test100, test1000].forEach(el => el.disabled = true);
         // Array-Größe setzen
         numArray.value = arraySize;
-        console.log(numArray.value);
         updateValueValue();
+        resetTimer();
         
         switch(arrayMode)
         {
@@ -83,45 +77,10 @@ document.addEventListener('DOMContentLoaded', function()
 
         console.log(array);
         
-        resetTestTimes();
-        // Sortierung starten und Zeit messen
         startMergeSort();
 
-        testCurrentTime = currentTime;
-        testWorstTime = worstTime;
-        testBestTime = bestTime;
-        updateTestTimeDisplays();
-        /*
-        // Ergebnisse speichern
-        if (testCurrentTime < testBestTime) 
-        {
-            testBestTime = testCurrentTime;
-            testBestTimeDiv.textContent = formatTime(testBestTime);
-        }
-        if (testCurrentTime > testWorstTime) 
-        {
-            testWorstTime = testCurrentTime;
-            testWorstTimeDiv.textContent = formatTime(testWorstTime);
-        }
-            
-        testCurrentTimeDiv.textContent = formatTime(testCurrentTime);
-        */
         // Ergebnisse anzeigen
         [test10, test100, test1000, sortBtn].forEach(el => el.disabled = false);
-    }
-
-    function updateTestTimeDisplays() 
-    {
-        testCurrentTimeDiv.textContent = formatTime(testCurrentTime);
-        testBestTimeDiv.textContent = formatTime(testBestTime);
-        testWorstTimeDiv.textContent = formatTime(testWorstTime);
-    }
-
-    function resetTestTimes()
-    {
-        testBestTime = Infinity;
-        testWorstTime = 0;
-        testCurrentTime = 0;
     }
 
     onCheck.addEventListener('change', function() 
