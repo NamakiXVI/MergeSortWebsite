@@ -121,7 +121,7 @@
           <div class="CallStackLog" id="CallStackLog"></div>
         </div>
         
-        <header>Was ist Mergesort?</header>
+        <header><h1>Was ist Mergesort?</h1></header>
 
         <div class="erklaerungsSection">
           <h2>Grundprinzip</h2>
@@ -133,61 +133,265 @@
           </ol>
       </div>
 
+  <h2>Merge-Sort Code in Java</h2>
   <div class="code-editor">
     <div class="code-header">
       <span class="code-title">MergeSort.java</span>
     </div>
     <div class="code-editor-content">
       <code class="code-code">
-      <p><span class="color-0">public class</span> <span class="color-2">MergeSort</span> {</p>
-      
-        <p>&nbsp;&nbsp;<span class="color-0 comment">// Teilt das Array rekursiv in Hälften</span></p>
-        <p>&nbsp;&nbsp;<span class="color-0">public static</span> <span class="color-0">void</span> <span class="color-2">mergeSort</span>(<span class="color-0">int</span>[] array) {</p>
+        <p><span class="color-0">public class</span> <span class="color-1">MergeSort</span> <span>{</span></p>
         
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">if</span> (array.<span class="color-2">length</span> > 1) { <span class="color-0 comment">// Rekursionsabbruch: Einzelne Elemente sind sortiert</span></p>
+        <p><span class="color-0">&nbsp;&nbsp;public static</span> <span class="color-0">void</span> <span class="color-1">mergeSort</span><span>(</span><span class="color-0">int</span><span>[]</span> <span class="color-2">array</span><span>)</span> <span>{</span></p>
         
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0 comment">// 1. DIVIDE: Array in zwei Hälften teilen</span></p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">int</span> mid = array.<span class="color-2">length</span> / 2;</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">int</span>[] left = <span class="color-0">new</span> <span class="color-0">int</span>[mid];</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">int</span>[] right = <span class="color-0">new</span> <span class="color-0">int</span>[array.<span class="color-2">length</span> - mid];</p>
-  
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">System.arraycopy</span>(array, 0, left, 0, mid); <span class="color-0 comment">// Linke Hälfte kopieren</span></p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">System.arraycopy</span>(array, mid, right, 0, array.<span class="color-2">length</span> - mid); <span class="color-0 comment">// Rechte Hälfte kopieren</span></p>
-  
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">mergeSort</span>(left); <span class="color-0 comment">// Linke Hälfte sortieren</span></p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">mergeSort</span>(right); <span class="color-0 comment">// Rechte Hälfte sortieren</span></p>
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;if</span> <span>(</span><span class="color-2">array</span><span>.</span><span class="color-1">length</span> <span>></span> <span class="color-3">1</span><span>)</span> <span>{</span></p>
         
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-2">merge</span>(array, left, right); <span class="color-0 comment">// Sortierte Hälften zusammenfügen</span></p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-        <p>&nbsp;&nbsp;}</p>
-  
-        <p>&nbsp;&nbsp;<span class="color-0 comment">// Fügt zwei sortierte Arrays zu einem sortierten Array zusammen</span></p>
-        <p>&nbsp;&nbsp;<span class="color-0">private static</span> <span class="color-0">void</span> <span class="color-2">merge</span>(<span class="color-0">int</span>[] result, <span class="color-0">int</span>[] left, <span class="color-0">int</span>[] right) {</p>
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int</span> <span class="color-2">mid</span> <span>=</span> <span class="color-2">array</span><span>.</span><span class="color-1">length</span> <span>/</span> <span class="color-3">2</span><span>;</span></p>
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int</span><span>[]</span> <span class="color-2">left</span> <span>=</span> <span class="color-0">new</span> <span class="color-0">int</span><span>[</span><span class="color-2">mid</span><span>];</span></p>
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for</span> <span>(</span><span class="color-0">int</span> <span class="color-2">i</span> <span>=</span> <span class="color-3">0</span><span>;</span> <span class="color-2">i</span> <span><</span> <span class="color-2">mid</span><span>;</span> <span class="color-2">i</span><span>++)</span> <span>{</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">left</span><span>[</span><span class="color-2">i</span><span>]</span> <span>=</span> <span class="color-2">array</span><span>[</span><span class="color-2">i</span><span>];</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
         
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">int</span> i = 0, j = 0, k = 0; <span class="color-0 comment">// Index für left (i), right (j), result (k)</span></p>
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int</span><span>[]</span> <span class="color-2">right</span> <span>=</span> <span class="color-0">new</span> <span class="color-0">int</span><span>[</span><span class="color-2">array</span><span>.</span><span class="color-1">length</span> <span>-</span> <span class="color-2">mid</span><span>];</span></p>
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for</span> <span>(</span><span class="color-0">int</span> <span class="color-2">i</span> <span>=</span> <span class="color-2">mid</span><span>;</span> <span class="color-2">i</span> <span><</span> <span class="color-2">array</span><span>.</span><span class="color-1">length</span><span>;</span> <span class="color-2">i</span><span>++)</span> <span>{</span> <br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">right</span><span>[</span><span class="color-2">i</span> <span>-</span> <span class="color-2">mid</span><span>]</span> <span>=</span> <span class="color-2">array</span><span>[</span><span class="color-2">i</span><span>];</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
         
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0 comment">// 2. CONQUER: Elemente vergleichen und sortiert einfügen</span></p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">while</span> (i < left.<span class="color-2">length</span> && j < right.<span class="color-2">length</span>) {</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">if</span> (left[i] <= right[j]) {</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result[k++] = left[i++]; <span class="color-0 comment">// Linkes Element ist kleiner</span></p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <span class="color-0">else</span> {</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result[k++] = right[j++]; <span class="color-0 comment">// Rechtes Element ist kleiner</span></p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-  
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0 comment">// 3. Restelemente aus left/right übernehmen</span></p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">while</span> (i < left.<span class="color-2">length</span>) {</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result[k++] = left[i++];</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-  
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="color-0">while</span> (j < right.<span class="color-2">length</span>) {</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result[k++] = right[j++];</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-        <p>&nbsp;&nbsp;}</p>
-        <p>}</p>
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-1">mergeSort</span><span>(</span><span class="color-2">left</span><span>);</span> <br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-1">mergeSort</span><span>(</span><span class="color-2">right</span><span>);</span> <br>
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-1">merge</span><span>(</span><span class="color-2">array</span><span>,</span> <span class="color-2">left</span><span>,</span> <span class="color-2">right</span><span>);</span></p>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+        <p><span class="color-0">&nbsp;&nbsp;</span><span>}</span></p>
+        
+        <p><span class="color-0">&nbsp;&nbsp;public static</span> <span class="color-0">void</span> <span class="color-1">merge</span><span>(</span><span class="color-0">int</span><span>[]</span> <span class="color-2">result</span><span>,</span> <span class="color-0">int</span><span>[]</span> <span class="color-2">left</span><span>,</span> <span class="color-0">int</span><span>[]</span> <span class="color-2">right</span><span>)</span> <span>{</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;int</span> <span class="color-2">i</span> <span>=</span> <span class="color-3">0</span><span>,</span> <span class="color-2">j</span> <span>=</span> <span class="color-3">0</span><span>,</span> <span class="color-2">k</span> <span>=</span> <span class="color-3">0</span><span>;</span></p>
+        
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;while</span> <span>(</span><span class="color-2">i</span> <span><</span> <span class="color-2">left</span><span>.</span><span class="color-1">length</span> <span>&&</span> <span class="color-2">j</span> <span><</span> <span class="color-2">right</span><span>.</span><span class="color-1">length</span><span>)</span> <span>{</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</span> <span>(</span><span class="color-2">left</span><span>[</span><span class="color-2">i</span><span>]</span> <span><=</span> <span class="color-2">right</span><span>[</span><span class="color-2">j</span><span>])</span> <span>{</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">result</span><span>[</span><span class="color-2">k</span><span>++]</span> <span>=</span> <span class="color-2">left</span><span>[</span><span class="color-2">i</span><span>++];</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span> <span class="color-0">else</span> <span>{</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">result</span><span>[</span><span class="color-2">k</span><span>++]</span> <span>=</span> <span class="color-2">right</span><span>[</span><span class="color-2">j</span><span>++];</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+        
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;while</span> <span>(</span><span class="color-2">i</span> <span><</span> <span class="color-2">left</span><span>.</span><span class="color-1">length</span><span>)</span> <span>{</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">result</span><span>[</span><span class="color-2">k</span><span>++]</span> <span>=</span> <span class="color-2">left</span><span>[</span><span class="color-2">i</span><span>++];</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+        
+        <p><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;while</span> <span>(</span><span class="color-2">j</span> <span><</span> <span class="color-2">right</span><span>.</span><span class="color-1">length</span><span>)</span> <span>{</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">result</span><span>[</span><span class="color-2">k</span><span>++]</span> <span>=</span> <span class="color-2">right</span><span>[</span><span class="color-2">j</span><span>++];</span><br>
+        <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span><br>
+        <span class="color-0">&nbsp;&nbsp;</span><span>}</span></p>
+        <span>}</span></p>
       </code>
     </div>
   </div>
-  
+  </div>
+
+  <section class="code-explanation-section">
+    <div class="code-container">
+      <div class="code-explanation-grid">
+        <!-- Code Block (left side) -->
+        <div class="code-block">
+          <div class="code-editor">
+            <div class="code-header">
+              <span class="code-title">MergeSort.java</span>
+            </div>
+            <div class="code-editor-content">
+              <code class="code-code">
+                <p id="line1"><span class="color-0">&nbsp;&nbsp;public static</span> <span class="color-0">void</span> <span class="color-1">mergeSort</span><span>(</span><span class="color-0">int</span><span>[]</span> <span class="color-2">array</span><span>)</span> <span>{</span></p>
+            
+                  <p id="line2"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;if</span> <span>(</span><span class="color-2">array</span><span>.</span><span class="color-1">length</span> <span>></span> <span class="color-3">1</span><span>)</span> <span>{</span></p>
+                  
+                  <p id="line3"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int</span> <span class="color-2">mid</span> <span>=</span> <span class="color-2">array</span><span>.</span><span class="color-1">length</span> <span>/</span> <span class="color-3">2</span><span>;</span></p>
+                  <p id="line4"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int</span><span>[]</span> <span class="color-2">left</span> <span>=</span> <span class="color-0">new</span> <span class="color-0">int</span><span>[</span><span class="color-2">mid</span><span>];</span></p>
+                  <p id="line5"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for</span> <span>(</span><span class="color-0">int</span> <span class="color-2">i</span> <span>=</span> <span class="color-3">0</span><span>;</span> <span class="color-2">i</span> <span><</span> <span class="color-2">mid</span><span>;</span> <span class="color-2">i</span><span>++)</span> <span>{</span><br>
+                  <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">left</span><span>[</span><span class="color-2">i</span><span>]</span> <span>=</span> <span class="color-2">array</span><span>[</span><span class="color-2">i</span><span>];</span><br>
+                  <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+                  
+                  <p id="line6"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int</span><span>[]</span> <span class="color-2">right</span> <span>=</span> <span class="color-0">new</span> <span class="color-0">int</span><span>[</span><span class="color-2">array</span><span>.</span><span class="color-1">length</span> <span>-</span> <span class="color-2">mid</span><span>];</span></p>
+                  <p id="line7"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for</span> <span>(</span><span class="color-0">int</span> <span class="color-2">i</span> <span>=</span> <span class="color-2">mid</span><span>;</span> <span class="color-2">i</span> <span><</span> <span class="color-2">array</span><span>.</span><span class="color-1">length</span><span>;</span> <span class="color-2">i</span><span>++)</span> <span>{</span> <br>
+                  <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">right</span><span>[</span><span class="color-2">i</span> <span>-</span> <span class="color-2">mid</span><span>]</span> <span>=</span> <span class="color-2">array</span><span>[</span><span class="color-2">i</span><span>];</span><br>
+                  <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+                  
+                  <p id="line8"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-1">mergeSort</span><span>(</span><span class="color-2">left</span><span>);</span> <br>
+                  <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-1">mergeSort</span><span>(</span><span class="color-2">right</span><span>);</span> <br>
+                  <p id="line9"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-1">merge</span><span>(</span><span class="color-2">array</span><span>,</span> <span class="color-2">left</span><span>,</span> <span class="color-2">right</span><span>);</span></p>
+                  <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+                  <p><span class="color-0">&nbsp;&nbsp;</span><span>}</span></p>
+              </code>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Explanation (right side) -->
+        <div class="explanation-block">
+          <div class="explanation-item" data-target="line2">
+            <div class="explanation-header">
+              <span class="arrow">→</span>
+              <h3>if (array.length > 1)</h3>
+            </div>
+            <ul>
+              <li>Stoppt die Rekursion, wenn das Array nur 1 Element oder weniger enthält</li>
+              <li>Arrays der Länge 1 sind per Definition bereits sortiert</li>
+            </ul>
+          </div>
+          
+          <div class="explanation-item" data-target="line3">
+            <div class="explanation-header">
+              <span class="arrow">→</span>
+              <h3>2. Teilungspunkt: int mid = array.length / 2</h3>
+            </div>
+            <ul>
+              <li>Berechnet die Mitte des Arrays</li>
+              <li>Beispiel: Bei Länge 5 → mid = 2 (da Integer-Division)</li>
+            </ul>
+          </div>
+          
+          <div class="explanation-item" data-target="line4,line5,line6,line7">
+            <div class="explanation-header">
+              <span class="arrow">→</span>
+              <h3>3. Array-Aufteilung</h3>
+            </div>
+            <pre>int[] left = new int[mid]; 
+int[] right = new int[array.length - mid];</pre>
+            <ul>
+              <li>Erstellt zwei neue Teil-Arrays:</li>
+              <li><strong>left</strong>: Enthält die erste Hälfte der Elemente</li>
+              <li><strong>right</strong>: Enthält die zweite Hälfte</li>
+            </ul>
+          </div>
+          
+          <div class="explanation-item" data-target="line8">
+            <div class="explanation-header">
+              <span class="arrow">→</span>
+              <h3>4. Rekursive Aufrufe</h3>
+            </div>
+            <pre>mergeSort(left);
+mergeSort(right);</pre>
+            <ul>
+              <li>Wendet den Algorithmus erneut auf beide Hälften an</li>
+              <li>Zerlegt das Problem in immer kleinere Teile (Divide-and-Conquer)</li>
+              <li>Rekursion endet, wenn 1-Element-Arrays erreicht werden</li>
+            </ul>
+          </div>
+          
+          <div class="explanation-item" data-target="line9">
+            <div class="explanation-header">
+              <span class="arrow">→</span>
+              <h3>5. Merge-Phase</h3>
+            </div>
+            <pre>merge(array, left, right);</pre>
+            <ul>
+              <li>Kombiniert die zwei sortierten Teil-Arrays (left und right)</li>
+              <li>Erzeugt ein neues sortiertes Gesamt-Array durch elementweisen Vergleich</li>
+              <li>Dies ist der eigentliche Sortierschritt</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="second-code-explanation-section">
+    <div class="second-container">
+      <div class="second-explanation-container">
+        <div class="second-explanation-content">
+
+          <div class="explanation-item" data-target="line10">
+            <div class="explanation-header">
+              <span class="arrow">→</span>
+              <h3>1. Variablen-Initialisierung</h3>
+            </div>
+            <pre>int i = 0, j = 0, k = 0;</pre>
+            <ul>
+              <li><strong>i</strong>: Pointer für das left-Array (Start bei Index 0)</li>
+              <li><strong>j</strong>: Pointer für das right-Array (Start bei Index 0)</li>
+              <li><strong>k</strong>: Pointer für das result-Array (Start bei Index 0)</li>
+              <li>Die Pointer tracken, wo wir in jedem Array gerade sind</li>
+            </ul>
+          </div>
+          
+          <div class="explanation-item" data-target="line11">
+            <div class="explanation-header">
+              <span class="arrow">→</span>
+              <h3>2. Haupt-Schleife: Vergleichen & Sortieren</h3>
+            </div>
+            <pre>while (i < left.length && j < right.length) {
+      if (left[i] <= right[j]) {
+          result[k++] = left[i++];
+      } else {
+          result[k++] = right[j++];
+      }
+  }</pre>
+            <ul>
+              <li>Vergleicht das aktuelle Element von <strong>left</strong> (bei Index i) mit dem von <strong>right</strong> (bei Index j)</li>
+              <li>Das kleinere Element kommt ins <strong>result</strong>-Array!</li>
+              <li><strong>k++/i++/j++</strong>: Nach dem Zuweisen wird der Pointer weiterbewegt</li>
+            </ul>
+          </div>
+          
+          <div class="explanation-item" data-target="line12">
+            <div class="explanation-header">
+              <span class="arrow">→</span>
+              <h3>3. Restliche Elemente aus left kopieren</h3>
+            </div>
+            <pre>while (i < left.length) {
+      result[k++] = left[i++];
+  }</pre>
+            <ul>
+              <li> Falls <strong>right</strong> leer ist, aber <strong>left</strong> noch Elemente hat</li>
+            </ul>
+          </div>
+          
+          <div class="explanation-item" data-target="line13">
+            <div class="explanation-header">
+              <span class="arrow">→</span>
+              <h3>4. Restliche Elemente aus right kopieren</h3>
+            </div>
+            <pre>while (j < right.length) {
+      result[k++] = right[j++];
+  }</pre>
+            <ul>
+              <li> Falls <strong>left</strong> leer ist, aber <strong>right</strong> noch Elemente hat</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="code-container">
+        <div class="code-editor">
+          <div class="code-header">
+            <span class="code-title">MergeSort.java</span>
+          </div>
+          <div class="code-editor-content">
+            <code class="code-code">
+              <p id="line10"><span class="color-0">&nbsp;&nbsp;public static</span> <span class="color-0">void</span> <span class="color-1">merge</span><span>(</span><span class="color-0">int</span><span>[]</span> <span class="color-2">result</span><span>,</span> <span class="color-0">int</span><span>[]</span> <span class="color-2">left</span><span>,</span> <span class="color-0">int</span><span>[]</span> <span class="color-2">right</span><span>)</span> <span>{</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;int</span> <span class="color-2">i</span> <span>=</span> <span class="color-3">0</span><span>,</span> <span class="color-2">j</span> <span>=</span> <span class="color-3">0</span><span>,</span> <span class="color-2">k</span> <span>=</span> <span class="color-3">0</span><span>;</span></p>
+              
+              <p id="line11"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;while</span> <span>(</span><span class="color-2">i</span> <span><</span> <span class="color-2">left</span><span>.</span><span class="color-1">length</span> <span>&&</span> <span class="color-2">j</span> <span><</span> <span class="color-2">right</span><span>.</span><span class="color-1">length</span><span>)</span> <span>{</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</span> <span>(</span><span class="color-2">left</span><span>[</span><span class="color-2">i</span><span>]</span> <span><=</span> <span class="color-2">right</span><span>[</span><span class="color-2">j</span><span>])</span> <span>{</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">result</span><span>[</span><span class="color-2">k</span><span>++]</span> <span>=</span> <span class="color-2">left</span><span>[</span><span class="color-2">i</span><span>++];</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span> <span class="color-0">else</span> <span>{</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">result</span><span>[</span><span class="color-2">k</span><span>++]</span> <span>=</span> <span class="color-2">right</span><span>[</span><span class="color-2">j</span><span>++];</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+              
+              <p id="line12"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;while</span> <span>(</span><span class="color-2">i</span> <span><</span> <span class="color-2">left</span><span>.</span><span class="color-1">length</span><span>)</span> <span>{</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">result</span><span>[</span><span class="color-2">k</span><span>++]</span> <span>=</span> <span class="color-2">left</span><span>[</span><span class="color-2">i</span><span>++];</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+              
+              <p id="line13"><span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;while</span> <span>(</span><span class="color-2">j</span> <span><</span> <span class="color-2">right</span><span>.</span><span class="color-1">length</span><span>)</span> <span>{</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="color-2">result</span><span>[</span><span class="color-2">k</span><span>++]</span> <span>=</span> <span class="color-2">right</span><span>[</span><span class="color-2">j</span><span>++];</span><br>
+              <span class="color-0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span><br>
+              <span class="color-0">&nbsp;&nbsp;</span><span>}</span></p>
+            </code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>

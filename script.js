@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function()
 
     async function startMergeSort() 
     {
-//        addCallStackLog("startMergeSort()");
+        addCallStackLog("startMergeSort()");
         let CallLog = document.getElementById('CallStackLog');
         CallLog.innerHTML = ``;
         lineText = 0;
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function()
     
     async function mergeSort(arr, left, right) 
     {
-//        addCallStackLog(`mergeSort(arr: ${arr} ,left: ${left} ,right: ${right})`);
+        addCallStackLog(`mergeSort(arr: ${arr} ,left: ${left} ,right: ${right})`);
         if (left >= right) return;
         
         const mid = Math.floor((left + right) / 2);
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function()
     
     async function merge(arr, left, mid, right) 
     {
-//        addCallStackLog(`merge(arr: ${arr} , left: ${left}, mid: ${mid}, right: ${right})`);
+        addCallStackLog(`merge(arr: ${arr} , left: ${left}, mid: ${mid}, right: ${right})`);
         let i = left;
         let j = mid + 1;
         let temp = [];
@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function()
 // Absteigender MergeSort (Größte zu Kleinste)
     async function mergeSortReversed(arr, left, right) 
     {
-//        addCallStackLog(`mergeSortReversed(${arr} , ${left}, ${right})`);
+        addCallStackLog(`mergeSortReversed(${arr} , ${left}, ${right})`);
         if (left >= right) return;
         
         const mid = Math.floor((left + right) / 2);
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function()
 
     async function mergeReversed(arr, left, mid, right) 
     {
-//        addCallStackLog(`mergeReversed(${arr} , ${left}, ${mid}, ${right})`);
+        addCallStackLog(`mergeReversed(${arr} , ${left}, ${mid}, ${right})`);
         let i = left;
         let j = mid + 1;
         let temp = [];
@@ -463,4 +463,35 @@ document.addEventListener('DOMContentLoaded', function()
         lineText++;
         CallStackLog.appendChild(newLog);
     }
+
+    const explanationItems = document.querySelectorAll('.explanation-item');
+  
+    explanationItems.forEach(item => {
+      const targetLines = item.getAttribute('data-target').split(',');
+      
+      item.addEventListener('mouseenter', function() {
+        targetLines.forEach(lineId => {
+          const line = document.getElementById(lineId);
+          if (line) line.classList.add('highlight');
+        });
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        targetLines.forEach(lineId => {
+          const line = document.getElementById(lineId);
+          if (line) line.classList.remove('highlight');
+        });
+      });
+    });
+
+    const codeContainer = document.querySelector('.code-container');
+    
+      window.addEventListener('scroll', function() {
+        console.log(codeContainer.top);
+        if (codeContainer.top <= 20) {
+          codeContainer.classList.add("fixed-content");
+        } else {
+          codeContainer.classList.remove("fixed-content");
+        }
+      });
 });

@@ -390,7 +390,7 @@ width:100%;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  font-family: Consolas,monaco,monospace;
+  font-family: Consolas,monospace;
 }
 
 .CallStackLog{
@@ -409,7 +409,7 @@ width:100%;
 
 .textLog{
   color: #95b6ff;
-  font-family: Consolas,monaco,monospace;
+  font-family: Consolas,monospace;
 }
 
 
@@ -458,13 +458,12 @@ width:100%;
 .testWrapper {
   height: 0%;
   display: flex;
-  width: ;
 }
 
 .testCircle {
-  position: relative; /* Needed for absolute positioning of children */
-  justify-content: center; /* Horizontally centers children */
-  align-items: center; /* Vertically centers children */
+  position: relative; 
+  justify-content: center;
+  align-items: center;
   display: flex;
   position: relative;
   padding: 10px 20px;
@@ -601,13 +600,14 @@ width:100%;
 }
 
 .code-editor {
-  width: 90%;
+  width: 97%;
   background-color: #1d1e22;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   padding: 2px;
   cursor: text;
-  margin: 0 auto;
+  justify-content: center;
+  margin: 1rem auto;
 }
 
 .code-header {
@@ -618,7 +618,7 @@ width:100%;
 }
 
 .code-title {
-  font-family: Lato, sans-serif;
+  font-family: 'Consolas', monospace;
   font-weight: 900;
   font-size: 14px;
   letter-spacing: 1.57px;
@@ -628,10 +628,6 @@ width:100%;
 .code-editor-content {
   margin: 0 10px 10px;
   color: white;
-}
-
-.code-property {
-  margin-left: 30px;
 }
 
 .code-editor-content .color-0 {
@@ -654,4 +650,156 @@ width:100%;
   color: #6A9955; /* Grün für Kommentare */
   font-style: italic;
   margin-left: 15px;
+}
+
+.code-explanation-section 
+{
+  font-family: 'Consolas', monospace;
+  background-color: rgb(153, 153, 153);
+}
+.second-code-explanation-section 
+{
+  font-family: 'Consolas', monospace;
+  background-color:rgb(129, 129, 129);
+}
+
+.code-container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.code-explanation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.explanation-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.explanation-item {
+  position: relative;
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+  max-width: 90%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.explanation-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.explanation-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.explanation-header code {
+  background: #f0f0f0;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Consolas', monospace;
+}
+
+.arrow {
+  color: #4a90e2;
+  font-size: 1.2rem;
+}
+
+.explanation-content {
+  color: #333;
+  line-height: 1.5;
+}
+
+.explanation-content ul {
+  margin-top: 0.2rem;
+  padding-left: 1.2rem;
+}
+
+.highlight {
+  background: rgba(97, 175, 239, 0.2);
+  position: relative;
+}
+
+.highlight::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: #61afef;
+}
+
+.second-container {
+  display: flex;
+  width: 100%;
+  max-width: 90%;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.second-code-container {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.second-explanation-container {
+  flex: 1;
+  padding: 1rem;
+}
+
+.second-code-editor {
+  background: #282c34;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.second-code-header {
+  background: #1e2127;
+  padding: 0.5rem 1rem;
+  color: #abb2bf;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.second-code-editor-content {
+  padding: 1rem;
+  color: #abb2bf;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.second-explanation-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.second-explanation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
