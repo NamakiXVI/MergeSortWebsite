@@ -542,14 +542,13 @@ document.addEventListener('DOMContentLoaded', function()
 // Asynchrone Hauptfunktion für MergeSort
     async function mergeSort1000(arr, left, right) 
     {
-        // Basisfall: Wenn der linke Index größer oder gleich dem rechten ist, 
-        // ist das (Teil-)Array bereits sortiert (0 oder 1 Element)
+        // Wenn der linke Index größer oder gleich dem rechten ist, ist das (Teil-)Array bereits sortiert (0 oder 1 Element)
         if (left >= right) return;
         
         // Mitte des aktuellen (Teil-)Arrays berechnen
         const mid = Math.floor((left + right) / 2);
         
-        // VISUALISIERUNG: Zeige den Teilungsschritt an
+        // Zeige den Teilungsschritt an
         explanation.innerHTML = `Teile Array von  ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
         await sleep(delay); // Kurze Pause für die Visualisierung
         
@@ -558,14 +557,14 @@ document.addEventListener('DOMContentLoaded', function()
         // Rekursiver Aufruf für die rechte Hälfte (von mid+1 bis right)
         await mergeSort1000(arr, mid + 1, right);
         
-        // VISUALISIERUNG: Zeige an, dass jetzt die sortierten Hälften zusammengeführt werden
+        // Zeige an, dass jetzt die sortierten Hälften zusammengeführt werden
         explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen`;
         await sleep(delay);
         
         // Die beiden sortierten Hälften zusammenführen
         await merge1000(arr, left, mid, right);
         
-        // VISUALISIERUNG: Zeige das Ergebnis nach dem Zusammenführen
+        //  Zeige das Ergebnis nach dem Zusammenführen
         arrayListText.textContent += `\n Ergebnis: [${arr.slice(left, right + 1).join(', ')}]`;
         await sleep(delay);
     }
@@ -610,7 +609,7 @@ document.addEventListener('DOMContentLoaded', function()
             await sleep(delay/2);
         }
         
-        // VISUALISIERUNG: Zeige den aktuellen Zustand des gesamten Arrays
+        // Zeige den aktuellen Zustand des gesamten Arrays
         arrayListText.textContent = `\n\n akzueller Array: [${arr.join(', ')}]`;
     }
 
@@ -624,7 +623,7 @@ document.addEventListener('DOMContentLoaded', function()
         // Mitte des aktuellen (Teil-)Arrays berechnen
         const mid = Math.floor((left + right) / 2);
         
-        // VISUALISIERUNG: Zeige den Teilungsschritt an
+        // Zeige den Teilungsschritt an
         explanation.innerHTML = `Teile Array von Index ${left} bis ${right} in zwei Hälften (Mitte bei ${mid})`;
         await sleep(delay);
         
@@ -633,7 +632,7 @@ document.addEventListener('DOMContentLoaded', function()
         // Rekursiver Aufruf für die rechte Hälfte (von mid+1 bis right)
         await mergeSortReversed1000(arr, mid + 1, right);
         
-        // VISUALISIERUNG: Zeige an, dass jetzt die sortierten Hälften absteigend zusammengeführt werden
+        // Zeige an, dass jetzt die sortierten Hälften absteigend zusammengeführt werden
         explanation.innerHTML = `Füge sortierte Hälften von Index ${left} bis ${right} zusammen (absteigend)`;
         
         // Die beiden sortierten Hälften absteigend zusammenführen
@@ -649,7 +648,7 @@ document.addEventListener('DOMContentLoaded', function()
         
         // Solange beide Hälften noch Elemente enthalten...
         while (i <= mid && j <= right) {
-            // VERÄNDERTE LOGIK: Größeres Element zuerst (absteigende Sortierung)
+            // Größeres Element zuerst (absteigende Sortierung)
             if (arr[i] > arr[j]) {
                 // Element aus der linken Hälfte ist größer -> kommt zuerst
                 temp.push(arr[i++]);
