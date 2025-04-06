@@ -698,6 +698,22 @@ width:100%;
   box-shadow: 0 4px 8px rgba(74, 144, 226,0.8);
 }
 
+.erklaerung-item {
+  position: relative;
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+  max-width: 90%;
+  box-shadow: 0 2px 4px rgba(74, 144, 226,0.3);
+  transition: all 0.2s ease;
+  margin: 1% 10%;
+}
+
+.erklaerung-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(74, 144, 226,0.8);
+}
+
 .explanation-header {
   display: flex;
   align-items: center;

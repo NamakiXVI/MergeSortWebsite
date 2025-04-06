@@ -483,15 +483,4 @@ document.addEventListener('DOMContentLoaded', function()
         });
       });
     });
-
-    const codeContainer = document.querySelector('.code-container');
-    
-      window.addEventListener('scroll', function() {
-        console.log(codeContainer.top);
-        if (codeContainer.top <= 20) {
-          codeContainer.classList.add("fixed-content");
-        } else {
-          codeContainer.classList.remove("fixed-content");
-        }
-      });
 });
