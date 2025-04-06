@@ -68,7 +68,7 @@
             <div>
               <div class="PB-range-slider-div">
                 <label for="Value">Listengröße: </label>
-                <input type="range" min="5" max="1000" value="10" class="PB-range-slider" id="listSpeed">
+                <input type="range" min="5" max="250" value="10" class="PB-range-slider" id="listSpeed">
                 <p class="PB-range-slidervalue" id="listValue">30</p>
               </div>
             </div>
@@ -79,6 +79,8 @@
         <div class="explanation" id="explanation">
             Starten sie erstmal.
         </div>
+        
+        <p class="arrayList" id="arrayList">array</p>
 
         <div class="TimerContainer">
           <div class="testWrapper">
@@ -116,19 +118,15 @@
             <h2 class="buttonTimeText" id="bestTimeText">00:00:00:000</h2>
           </div>
         </div>
-        <div class="CallStack-Container">
-          <label class="CallstackHeader"> CallStack Log:</label>
-          <div class="CallStackLog" id="CallStackLog"></div>
-        </div>
         
-        <header><h1 class="headlines">Was ist Mergesort?</h1></header>
-
+        
         <div class="erklaerungsSection">
+          <header><h1 class="headlines">Was ist Mergesort?</h1></header>
           <div class="erklaerung-item">
             <div class="explanation-header">
               <h3>Was ist MergeSort?</h3>
             </div>
-            <p>MergeSort ist ein effizienter, stabiler Sortieralgorithmus, der nach dem Prinzip "Teile und herrsche" (Divide and Conquer) arbeitet. 
+            <p>MergeSort ist ein Sortieralgorithmus, der nach dem Prinzip "Teile und herrsche" (Divide and Conquer) arbeitet. 
               Er hat eine Zeitkomplexität von O(n log n), was ihn zu einem der schnellsten Sortieralgorithmen macht.</p>
           </div>
 
@@ -138,9 +136,9 @@
             </div>
             <p>MergeSort funktioniert in drei Hauptschritten:</p>
             <ol>
-                <li><strong>Teilen (Divide):</strong> Die zu sortierende Liste wird rekursiv in zwei Hälften geteilt, bis jede Teilliste nur noch ein Element enthält.</li>
-                <li><strong>Sortieren (Conquer):</strong> Ein-elementige Listen sind per Definition bereits sortiert.</li>
-                <li><strong>Zusammenführen (Merge):</strong> Die sortierten Teillisten werden wieder zusammengeführt, wobei in jedem Schritt die Elemente in die richtige Reihenfolge gebracht werden.</li>
+                <li><strong>Teilen (Divide):</strong> Die Liste wird rekursiv in zwei Hälften geteilt bis jede Teilliste nur noch ein Element enthält.</li>
+                <li><strong>Sortieren (Conquer):</strong> Ein-elementige Listen sind bereits sortiert.</li>
+                <li><strong>Zusammenführen (Merge):</strong> Die sortierten ein-elementigen Listen werden wieder zusammengeführt wobei in jedem Schritt die Elemente in die richtige Reihenfolge gebracht werden.</li>
             </ol>
           </div>
 
@@ -155,7 +153,6 @@
                 <li>Externe Sortierverfahren, wo Daten nicht komplett im RAM passen</li>
                 <li>Parallele Verarbeitung, da die Teilprobleme unabhängig voneinander gelöst werden können</li>
             </ul>
-            <p>MergeSort wird häufig in Standardbibliotheken verwendet und ist eine gute Wahl für verknüpfte Listen, da es keine random access Operationen benötigt.</p>
           </div>
       </div>
 
