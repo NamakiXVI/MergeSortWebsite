@@ -121,19 +121,46 @@
           <div class="CallStackLog" id="CallStackLog"></div>
         </div>
         
-        <header><h1>Was ist Mergesort?</h1></header>
+        <header><h1 class="headlines">Was ist Mergesort?</h1></header>
 
         <div class="erklaerungsSection">
-          <h2>Grundprinzip</h2>
-          <p>Merge-Sort ist ein <strong>divide-and-conquer</strong> Algorithmus:</p>
-          <ol>
-              <li>Teile die Liste rekursiv in Hälften</li>
-              <li>Sortiere die einzelnen Teile</li>
-              <li>Füge die sortierten Teile zusammen ("merge")</li>
-          </ol>
+          <div class="explanation-item">
+            <div class="explanation-header">
+              <h3>Was ist MergeSort?</h3>
+            </div>
+            <p>MergeSort ist ein effizienter, stabiler Sortieralgorithmus, der nach dem Prinzip "Teile und herrsche" (Divide and Conquer) arbeitet. 
+              Er hat eine Zeitkomplexität von O(n log n), was ihn zu einem der schnellsten Sortieralgorithmen macht.</p>
+          </div>
+
+          <div class="explanation-item">
+            <div class="explanation-header">
+              <h3>Wie funktioniert MergeSort?</h3>
+            </div>
+            <p>MergeSort funktioniert in drei Hauptschritten:</p>
+            <ol>
+                <li><strong>Teilen (Divide):</strong> Die zu sortierende Liste wird rekursiv in zwei Hälften geteilt, bis jede Teilliste nur noch ein Element enthält.</li>
+                <li><strong>Sortieren (Conquer):</strong> Ein-elementige Listen sind per Definition bereits sortiert.</li>
+                <li><strong>Zusammenführen (Merge):</strong> Die sortierten Teillisten werden wieder zusammengeführt, wobei in jedem Schritt die Elemente in die richtige Reihenfolge gebracht werden.</li>
+            </ol>
+          </div>
+
+          <div class="explanation-item">
+            <div class="explanation-header">
+              <h3>Funktion von MergeSort</h3>
+            </div>
+            <p>Die Hauptfunktion von MergeSort ist das <strong>Sortieren einer Liste von Elementen</strong> in aufsteigender (oder absteigender) Reihenfolge. MergeSort ist besonders nützlich für:</p>
+            <ul>
+                <li>Das Sortieren großer Datenmengen</li>
+                <li>Situationen, wo Stabilität wichtig ist (relative Reihenfolge gleicher Elemente bleibt erhalten)</li>
+                <li>Externe Sortierverfahren, wo Daten nicht komplett im RAM passen</li>
+                <li>Parallele Verarbeitung, da die Teilprobleme unabhängig voneinander gelöst werden können</li>
+            </ul>
+            <p>MergeSort wird häufig in Standardbibliotheken verwendet und ist eine gute Wahl für verknüpfte Listen, da es keine random access Operationen benötigt.</p>
+          </div>
       </div>
 
-  <h2>Merge-Sort Code in Java</h2>
+
+  <h2 class="headlines" style="font-size:2rem;">Merge-Sort Code in Java</h2>
   <div class="code-editor">
     <div class="code-header">
       <span class="code-title">MergeSort.java</span>
@@ -361,7 +388,7 @@ mergeSort(right);</pre>
       </div>
       
       <div class="code-container">
-        <div class="code-editor">
+        <div class="code-editor" style="width: 600px;">
           <div class="code-header">
             <span class="code-title">MergeSort.java</span>
           </div>

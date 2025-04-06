@@ -1,5 +1,5 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Consolas,monospace;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -390,7 +390,6 @@ width:100%;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  font-family: Consolas,monospace;
 }
 
 .CallStackLog{
@@ -409,7 +408,6 @@ width:100%;
 
 .textLog{
   color: #95b6ff;
-  font-family: Consolas,monospace;
 }
 
 
@@ -593,14 +591,17 @@ width:100%;
 }
 
 .erklaerungsSection{
-  font-family: Arial, sans-serif;
-  max-width: 800px;
   margin: 0 2%;
   padding: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .code-editor {
-  width: 97%;
+  width: 90%;
   background-color: #1d1e22;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
@@ -688,13 +689,13 @@ width:100%;
   background: white;
   border-radius: 6px;
   max-width: 90%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(74, 144, 226,0.3);
   transition: all 0.2s ease;
 }
 
 .explanation-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(74, 144, 226,0.8);
 }
 
 .explanation-header {
@@ -713,7 +714,7 @@ width:100%;
 }
 
 .arrow {
-  color: #4a90e2;
+  color: rgb(74, 144, 226);
   font-size: 1.2rem;
 }
 
@@ -803,3 +804,9 @@ width:100%;
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
+
+.headlines{
+  justify-content: center;
+  display: flex;
+}
+
