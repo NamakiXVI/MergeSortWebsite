@@ -501,7 +501,7 @@ document.addEventListener('DOMContentLoaded', function()
     });
 
     // startet den mergesort mit 1000 elementen
-    async function start1000MergeSort() 
+    async function start1000MergeSort() //dasselbe wie mergesort aber ohne die visualisierung weil die website einfach laggen würde und ich es daher mit einem text einfach Darstellen würde
     {
         delay = 0;
         [sortBtn, generateBtn, onCheck, numArray, arrayBtn].forEach(el => el.disabled = true);
@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', function()
         visualization.classList.remove('disabledVisualizor');
 
         [sortBtn, generateBtn, onCheck, numArray, arrayBtn].forEach(el => el.disabled = false);
-    }
+    } 
     
 // Asynchrone Hauptfunktion für MergeSort
     async function mergeSort1000(arr, left, right) 
