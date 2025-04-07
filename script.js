@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function()
         }
     });
 
+    //checkt einfach ob der switch aktiviert wurde oder nicht
     onDelay.addEventListener('change', function() 
     {
         if (this.checked) 
@@ -138,7 +139,8 @@ document.addEventListener('DOMContentLoaded', function()
     // event listener für die eingabe der array größe
     numArray.addEventListener('input', function()
     {
-        switch(arrayMode)
+        //erstellt ein array anhand des arrayModes
+        switch(arrayMode) //arrayMode wurde nur erstellt, damit, wenn man den listen range verstellt, dass es auch eine länge an der ausgewählten arrayart also duplikate oder sortier usw sich anpasst anstatt immer nur ein random array erstellt 
         {
             case 0:
                 generateArray();
@@ -162,19 +164,20 @@ document.addEventListener('DOMContentLoaded', function()
     // funktion um die geschwindigkeit zu aktualisieren
     function updateSpeed() 
     {
-        delay = 1050 - (speedControl.value * 50);
+        // Berechnet die delay basierend auf der speedrange delay ist zwischen 1050ms (langsamste) und 50ms (schnellste)
+        delay = 1050 - (speedControl.value * 50); //wenn speed 0 ist, dann ist delay = 1 sekunde und wenn speed 21 ist dann ist der delay = 0 und dazwischen hat man halt die range
         updateSpeedValue(speedControl.value);
     }
 
      // zeigt die aktuelle array größe an
     function updateSpeedValue()
     {
-        speedValue.textContent = ` ${speedControl.value}`;
+        speedValue.textContent = ` ${speedControl.value}`; //zeigt den numArray neben der geschwindigkeits range
     }
 
     function updateValueValue()
     {
-        numArrayValue.textContent = ` ${numArray.value}`;
+        numArrayValue.textContent = ` ${numArray.value}`; //zeigt den numArray neben der anzahlListen range
     }
     
      // generiert ein zufälliges array
@@ -185,14 +188,15 @@ document.addEventListener('DOMContentLoaded', function()
         visualization.innerHTML = '';
         explanation.innerHTML = 'Starten sie erstmal.';
 
+        //anzahl an arrays werden randomized im bereich zwischen 0 und maxValue gepusht solange bis liste voll ist
         for (let i = 0; i < numArray.value; i++)
         {
             array.push(Math.floor(Math.random() * maxValue));
         }
         
         updateValueValue();
-        arrayListText.textContent = array.toString();
-        renderBars(array);
+        arrayListText.textContent = array.toString(); //array wird eingeblendet in den arrayListText <div>
+        renderBars(array); //liste wird in balken erstellt
     }
 
     // generiert ein aufsteigend sortiertes array
@@ -200,13 +204,14 @@ document.addEventListener('DOMContentLoaded', function()
     {
         arrayMode = 1;
         array = [];
-        for (let i = 0; i < numArray.value; i++) {
-            array.push(Math.floor(Math.random() * maxValue));
+        for (let i = 0; i < numArray.value; i++) 
+        {
+            array.push(Math.floor(Math.random() * maxValue)); //dasselbe wie bei generateArray
         }
     
         updateValueValue();
         arrayListText.textContent = array.toString();
-        renderBars(array.sort((a, b) => a - b));
+        renderBars(array.sort((a, b) => a - b));//mit sort aufsteigend sortiert
     }
 
     // generiert ein absteigend sortiertes array
@@ -214,13 +219,14 @@ document.addEventListener('DOMContentLoaded', function()
     {
         arrayMode = 2;
         array = [];
-        for (let i = 0; i < numArray.value; i++) {
+        for (let i = 0; i < numArray.value; i++) 
+        {
             array.push(Math.floor(Math.random() * maxValue));
         }
 
         updateValueValue();
         arrayListText.textContent = array.toString();
-        renderBars(array.sort((a, b) => b - a));
+        renderBars(array.sort((a, b) => b - a)); //mit sort absteigend sortiert
     }
 
      // generiert ein array mit duplikaten
@@ -231,9 +237,10 @@ document.addEventListener('DOMContentLoaded', function()
         visualization.innerHTML = '';
         explanation.innerHTML = 'Starten sie erstmal.';
           
+        //basically wie generateArray, aber er erstellt sozusagen jedes element zweimal
         for (let i = 0; i < numArray.value / 2; i++)
         {
-            randomNum = Math.floor(Math.random() * maxValue);
+            randomNum = Math.floor(Math.random() * maxValue); 
             array.push(randomNum);
             array.push(randomNum);
         }
@@ -485,6 +492,7 @@ document.addEventListener('DOMContentLoaded', function()
     explanationItems.forEach(item => {
       const targetLines = item.getAttribute('data-target').split(',');
       
+      //wird gehighlighted wenn es gehovert wird also einfach eine style klasse hinzugefügt, was man in style.css erstellt wurde
       item.addEventListener('mouseenter', function() {
         targetLines.forEach(lineId => {
           const line = document.getElementById(lineId);
@@ -492,6 +500,7 @@ document.addEventListener('DOMContentLoaded', function()
         });
       });
       
+      //classe wird entfernt wenn diemaus weg ist
       item.addEventListener('mouseleave', function() {
         targetLines.forEach(lineId => {
           const line = document.getElementById(lineId);
